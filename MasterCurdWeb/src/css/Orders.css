@@ -1,0 +1,69 @@
+.exlabel {
+  border-bottom: 1px solid black;
+  display: inline-block;
+  height: 18px;
+}
+
+
+.exinput::-webkit-outer-spin-button,
+.exinput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.exlabel, .exinput {
+    font-size: 16px;
+    height: 18px;
+}
+
+.numbercontrol {
+  text-align: right;
+}
+
+.ordersbtns button {
+  margin-right: 4px;
+  padding: 10px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  border: none;
+}
+
+.ordersbtns{
+    margin-bottom: 10px;
+}
+
+.btn-add {
+  background-color: #16a34a; /* green */
+  color: white;
+}
+
+.btn-save {
+  background-color: #f59e0b; /* orange */
+  color: white;
+}
+
+.btn-search {
+  background-color: #2563eb; /* blue */
+  color: white;
+}
+
+.btn-delete {
+  background-color: #e64444a5; /* blue */
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+}
+
+table {
+  width: auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+
