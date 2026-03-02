@@ -82,7 +82,7 @@ app.MapDelete("/api/products/{id:int}", async (int id, AppDbContext db) =>
 // ================= ORDERS =================
 
 // Get all orders with product
-app.MapGet("/api/orders", async (AppDbContext db) =>
+app.MapGet("/api/orders/getallorders", async (AppDbContext db) =>
 {
     var order = await db.Orders
         .Include(o => o.Product)
@@ -102,18 +102,26 @@ app.MapGet("/api/orders", async (AppDbContext db) =>
 });
 
 // Add order
-app.MapPost("/api/orders", async (Orders order, AppDbContext db) =>
+app.MapPost("/api/orders/save", async (UpdatedOrdersArr request, AppDbContext db) =>
 {
-    var product = await db.Product.FindAsync(order.ProductId);
-    if (product is null)
-        return Results.BadRequest("Invalid ProductId");
+    if (request.InsertedData != null && request.InsertedData.Count > 0)
+    {
+        db.Orders.AddRange(request.InsertedData);
+    }
 
-    order.TotalPrice = product.Price * order.Qty;
+    if (request.UpdatedData != null && request.UpdatedData.Count > 0)
+    {
+        db.Orders.UpdateRange(request.UpdatedData);
+    }     
 
-    db.Orders.Add(order);
+    if (request.DeletedData != null && request.DeletedData.Count > 0)
+    {
+        db.Orders.RemoveRange(request.DeletedData);
+    }
+        
     await db.SaveChangesAsync();
 
-    return Results.Ok(order);
+    return Results.Ok();
 });
 
 app.Run();
